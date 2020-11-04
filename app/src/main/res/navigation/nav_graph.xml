@@ -32,7 +32,12 @@
             app:argType="string" />
         <action
             android:id="@+id/action_WelcomeFragment_to_InstructionFragment"
-            app:destination="@id/InstructionFragment" />
+            app:destination="@id/InstructionFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
     </fragment>
     <fragment
         android:id="@+id/InstructionFragment"
@@ -41,7 +46,12 @@
         tools:layout="@layout/fragment_instruction">
         <action
             android:id="@+id/action_InstructionFragment_to_ListFragment"
-            app:destination="@id/ListFragment" />
+            app:destination="@id/ListFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
     </fragment>
     <fragment
         android:id="@+id/ListFragment"
