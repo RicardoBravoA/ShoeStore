@@ -53,12 +53,13 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="@drawable/shape_circle"
-            app:srcCompat="@drawable/ic_arrow_next"
-            app:tint="@color/white"
+            android:onClick="@{() -> welcomeViewModel.navigation()}"
             android:scaleType="centerInside"
-            app:layout_constraintCircleRadius="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintCircleRadius="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_arrow_next"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

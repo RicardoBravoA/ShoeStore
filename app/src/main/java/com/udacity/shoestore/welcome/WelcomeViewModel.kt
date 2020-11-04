@@ -10,8 +10,16 @@ class WelcomeViewModel(user: String) : ViewModel() {
     val email: LiveData<String>
         get() = _email
 
+    private val _navigation = MutableLiveData<Boolean>()
+    val navigation: LiveData<Boolean>
+        get() = _navigation
+
     init {
         _email.value = user
+    }
+
+    fun navigation() {
+        _navigation.value = true
     }
 
 }
