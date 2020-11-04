@@ -5,26 +5,48 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
-
+import com.udacity.shoestore.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
 
+    private lateinit var viewModel: LoginViewModel
+    private lateinit var binding: FragmentLoginBinding
+
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.findViewById<Button>(R.id.login_button).setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.loginButton.setOnClickListener {
+            navigate()
         }
+
+        binding.forgotPwdText.setOnClickListener {
+            navigate()
+        }
+
+        binding.newUserText.setOnClickListener {
+            navigate()
+        }
+
     }
+
+    private fun navigate(){
+        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+    }
+
 }

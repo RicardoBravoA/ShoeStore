@@ -6,7 +6,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/layout_padding"
+        android:paddingStart="@dimen/layout_padding"
+        android:paddingEnd="@dimen/layout_padding"
         app:layout_constraintVertical_bias="0.5"
         tools:context=".login.LoginFragment">
 
@@ -60,7 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/email_text_input_layout"
                 app:passwordToggleEnabled="true">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pwd_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -84,8 +85,8 @@
                 android:id="@+id/forgot_pwd_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/layout_padding"
-                android:background="?selectableItemBackgroundBorderless"
+                android:layout_marginTop="@dimen/layout_margin"
+                android:background="?selectableItemBackground"
                 android:padding="@dimen/text_padding"
                 android:text="@string/forgot_pwd"
                 app:layout_constraintStart_toStartOf="parent"
