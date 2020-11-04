@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.utils.CustomTextWatcher
+import com.udacity.shoestore.utils.hideKeyboard
 
 class LoginFragment : Fragment() {
 
@@ -29,21 +30,25 @@ class LoginFragment : Fragment() {
 
         viewModel.validateEmail.observe(viewLifecycleOwner, { isValidEmail ->
             if (!isValidEmail) {
-                binding.emailTextInputLayout.isErrorEnabled = true
-                binding.emailTextInputLayout.error = getString(R.string.error_email)
+                showErrorMessageInputLayout(
+                    binding.emailTextInputLayout,
+                    getString(R.string.error_email)
+                )
             }
         })
 
         viewModel.validatePwd.observe(viewLifecycleOwner, { isValidPwd ->
             if (!isValidPwd) {
-                binding.pwdTextInputLayout.isErrorEnabled = true
-                binding.pwdTextInputLayout.error = getString(R.string.error_pwd)
+                showErrorMessageInputLayout(
+                    binding.pwdTextInputLayout,
+                    getString(R.string.error_pwd)
+                )
             }
         })
 
         viewModel.validateData.observe(viewLifecycleOwner, { isValid ->
             if (isValid) {
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+                navigate()
             }
         })
 
@@ -90,6 +95,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigate() {
+        hideKeyboard()
         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
     }
 
@@ -97,6 +103,11 @@ class LoginFragment : Fragment() {
         if (textInputLayout.isErrorEnabled) {
             textInputLayout.error = null
         }
+    }
+
+    private fun showErrorMessageInputLayout(textInputLayout: TextInputLayout, message: String) {
+        textInputLayout.isErrorEnabled = true
+        textInputLayout.error = message
     }
 
 }
