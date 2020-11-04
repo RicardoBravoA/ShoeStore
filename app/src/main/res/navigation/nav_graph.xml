@@ -13,7 +13,12 @@
 
         <action
             android:id="@+id/action_LoginFragment_to_WelcomeFragment"
-            app:destination="@id/WelcomeFragment" />
+            app:destination="@id/WelcomeFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
 
     </fragment>
 
@@ -27,15 +32,30 @@
             app:argType="string" />
         <action
             android:id="@+id/action_WelcomeFragment_to_InstructionFragment"
-            app:destination="@id/InstructionFragment" />
+            app:destination="@id/InstructionFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
     </fragment>
     <fragment
         android:id="@+id/InstructionFragment"
         android:name="com.udacity.shoestore.instruction.InstructionFragment"
-        android:label="fragment_instruction"
-        tools:layout="@layout/fragment_instruction" >
+        android:label="@string/instruction_fragment_label"
+        tools:layout="@layout/fragment_instruction">
         <action
-            android:id="@+id/action_InstructionFragment_to_WelcomeFragment"
-            app:destination="@id/WelcomeFragment" />
+            android:id="@+id/action_InstructionFragment_to_ListFragment"
+            app:destination="@id/ListFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
     </fragment>
+    <fragment
+        android:id="@+id/ListFragment"
+        android:name="com.udacity.shoestore.list.ListFragment"
+        android:label="@string/list_fragment_label"
+        tools:layout="@layout/fragment_list" />
 </navigation>

@@ -47,9 +47,12 @@ class LoginFragment : Fragment() {
         })
 
         viewModel.validateData.observe(viewLifecycleOwner, { isValid ->
-            if (isValid) {
-                navigate()
+            isValid.getContentIfNotHandled()?.let {
+                if (it) {
+                    navigate()
+                }
             }
+
         })
 
         return binding.root

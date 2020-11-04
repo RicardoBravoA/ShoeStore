@@ -13,4 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="NavigationButton">
+        <item name="android:background">@drawable/shape_circle</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="srcCompat">@drawable/ic_arrow_next</item>
+        <item name="tint">@color/white</item>
+    </style>
+
 </resources>
