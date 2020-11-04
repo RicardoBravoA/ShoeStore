@@ -17,7 +17,14 @@
     <string name="welcome_fragment_label">Welcome Fragment</string>
     <string name="welcome">Welcome!</string>
     <string name="hello_user">Hello %1$s</string>
-
     <!-- /Welcome -->
+
+    <!-- Instruction -->
+    <string name="instruction_fragment_label">Instruction Fragment</string>
+    <!-- /Instruction -->
+
+    <!-- List -->
+    <string name="list_fragment_label">List Fragment</string>
+    <!-- /List -->
 
 </resources>

@@ -38,10 +38,12 @@ class WelcomeFragment : Fragment() {
         binding.lifecycleOwner = this
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
-            if (navigation) {
-                findNavController().navigate(
-                    WelcomeFragmentDirections.actionWelcomeFragmentToInstructionFragment()
-                )
+            navigation.getContentIfNotHandled()?.let {
+                if (it) {
+                    findNavController().navigate(
+                        WelcomeFragmentDirections.actionWelcomeFragmentToInstructionFragment()
+                    )
+                }
             }
         })
 
