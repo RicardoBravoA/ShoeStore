@@ -13,7 +13,9 @@
         <action
             android:id="@+id/action_LoginFragment_to_WelcomeFragment"
             app:destination="@id/WelcomeFragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/WelcomeFragment"
         android:name="com.udacity.shoestore.welcome.WelcomeFragment"
@@ -22,5 +24,8 @@
         <action
             android:id="@+id/action_WelcomeFragment_to_LoginFragment"
             app:destination="@id/LoginFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
 </navigation>
