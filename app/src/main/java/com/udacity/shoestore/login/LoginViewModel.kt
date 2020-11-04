@@ -3,12 +3,13 @@ package com.udacity.shoestore.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.udacity.shoestore.utils.NavigationEvent
 import com.udacity.shoestore.utils.InputUtils
 
 class LoginViewModel : ViewModel() {
 
-    private val _validateData = MutableLiveData<Boolean>()
-    val validateData: LiveData<Boolean>
+    private val _validateData = MutableLiveData<NavigationEvent<Boolean>>()
+    val validateData: LiveData<NavigationEvent<Boolean>>
         get() = _validateData
 
     private val _validateEmail = MutableLiveData<Boolean>()
@@ -22,7 +23,7 @@ class LoginViewModel : ViewModel() {
     fun validateData(email: String, pwd: String) {
         _validateEmail.value = InputUtils.isValidEmail(email)
         _validatePwd.value = InputUtils.isValidPwd(pwd)
-        _validateData.value = _validateEmail.value!! && _validatePwd.value!!
+        _validateData.value = NavigationEvent(_validateEmail.value!! && _validatePwd.value!!)
     }
 
 }
