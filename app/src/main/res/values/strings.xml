@@ -4,10 +4,10 @@
 
     <string name="login_fragment_label">Login Fragment</string>
     <string name="welcome_fragment_label">Welcome Fragment</string>
-    <string name="enter_email">Enter email</string>
+    <string name="error_email">Enter email</string>
     <string name="email">Email</string>
     <string name="pwd">Password</string>
-    <string name="enter_pwd">Enter password</string>
+    <string name="error_pwd">Minimum 8 characters</string>
     <string name="login">Login</string>
     <string name="forgot_pwd">Forgot password?</string>
     <string name="new_user">New user? <b>SIGN UP</b></string>
