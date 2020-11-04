@@ -13,7 +13,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.utils.CustomTextWatcher
-import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
 
