@@ -96,7 +96,11 @@ class LoginFragment : Fragment() {
 
     private fun navigate() {
         hideKeyboard()
-        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToWelcomeFragment())
+        findNavController().navigate(
+            LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(
+                binding.emailEdit.text.toString()
+            )
+        )
     }
 
     private fun validateErrorInputLayout(textInputLayout: TextInputLayout) {
