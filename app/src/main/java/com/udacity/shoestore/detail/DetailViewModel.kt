@@ -4,7 +4,7 @@ import android.text.TextUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.model.ShoeModel
+import com.udacity.shoestore.model.shoe.ShoeModel
 import com.udacity.shoestore.utils.SingleEvent
 
 class DetailViewModel : ViewModel() {
