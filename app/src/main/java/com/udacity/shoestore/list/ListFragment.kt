@@ -37,6 +37,15 @@ class ListFragment : Fragment() {
 
         binding.adapter = listAdapter
 
+        viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
+            navigation.getContentIfNotHandled()?.let {
+                if (it) {
+                    findNavController().navigate(
+                        ListFragmentDirections.actionListFragmentToDetailFragment()
+                    )
+                }
+            }
+        })
 
         return binding.root
     }

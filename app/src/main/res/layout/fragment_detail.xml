@@ -25,15 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/next_button"
-            style="@style/NavigationButton"
-            android:layout_width="@dimen/floating_size"
-            android:layout_height="@dimen/floating_size"
-            android:onClick="@{() -> viewModel.navigation()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
