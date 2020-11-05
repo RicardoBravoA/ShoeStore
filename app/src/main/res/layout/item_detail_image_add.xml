@@ -8,6 +8,7 @@
         android:layout_width="@dimen/image_size"
         android:layout_height="@dimen/image_size"
         android:src="@drawable/ic_add"
+        android:background="@drawable/shape_rectangle"
         android:scaleType="centerInside"/>
 
 </layout>

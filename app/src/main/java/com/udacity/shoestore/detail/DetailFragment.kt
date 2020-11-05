@@ -16,6 +16,9 @@ import com.google.android.material.chip.Chip
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentDetailBinding
 import com.udacity.shoestore.databinding.ItemChipSizeBinding
+import com.udacity.shoestore.model.detail.AddImageModel
+import com.udacity.shoestore.model.detail.ImageModel
+import com.udacity.shoestore.utils.RecyclerViewDecoration
 import com.udacity.shoestore.utils.showErrorMessageInputLayout
 
 class DetailFragment : Fragment() {
@@ -34,6 +37,22 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         addChips(inflater)
+
+        binding.imageRecyclerView.addItemDecoration(RecyclerViewDecoration(resources.getDimension(R.dimen.layout_padding)))
+        val imageAdapter = DetailImageAdapter()
+        binding.adapter = imageAdapter
+        viewModel.addImage(AddImageModel())
+        viewModel.addImage(ImageModel(""))
+        viewModel.addImage(ImageModel(""))
+        viewModel.addImage(ImageModel(""))
+
+
+
+        viewModel.imageList.observe(viewLifecycleOwner, { image ->
+            image.getContentIfNotHandled()?.let {
+                imageAdapter.data = it
+            }
+        })
 
         viewModel.validateName.observe(viewLifecycleOwner, { isValid ->
             if (!isValid) {

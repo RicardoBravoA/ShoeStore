@@ -84,7 +84,7 @@
 
             <argument
                 android:name="shoe"
-                app:argType="com.udacity.shoestore.model.ShoeModel" />
+                app:argType="com.udacity.shoestore.model.shoe.ShoeModel" />
         </action>
 
     </fragment>
