@@ -1,5 +1,7 @@
 <resources>
+    <dimen name="floating_size">56dp</dimen>
     <dimen name="layout_margin">8dp</dimen>
     <dimen name="layout_padding">16dp</dimen>
     <dimen name="text_padding">8dp</dimen>
+    <dimen name="view_pager_size">80dp</dimen>
 </resources>
