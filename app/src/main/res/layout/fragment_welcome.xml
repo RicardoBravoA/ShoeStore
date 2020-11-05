@@ -50,8 +50,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/next_button"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/floating_size"
+            android:layout_height="@dimen/floating_size"
             style="@style/NavigationButton"
             android:onClick="@{() -> welcomeViewModel.navigation()}"
             app:layout_constraintBottom_toBottomOf="parent"
