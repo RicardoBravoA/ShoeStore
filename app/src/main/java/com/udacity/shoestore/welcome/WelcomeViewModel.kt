@@ -3,7 +3,7 @@ package com.udacity.shoestore.welcome
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.utils.NavigationEvent
+import com.udacity.shoestore.utils.SingleEvent
 
 class WelcomeViewModel(user: String) : ViewModel() {
 
@@ -11,8 +11,8 @@ class WelcomeViewModel(user: String) : ViewModel() {
     val email: LiveData<String>
         get() = _email
 
-    private val _navigation = MutableLiveData<NavigationEvent<Boolean>>()
-    val navigation: LiveData<NavigationEvent<Boolean>>
+    private val _navigation = MutableLiveData<SingleEvent<Boolean>>()
+    val navigation: LiveData<SingleEvent<Boolean>>
         get() = _navigation
 
     init {
@@ -20,7 +20,7 @@ class WelcomeViewModel(user: String) : ViewModel() {
     }
 
     fun navigation() {
-        _navigation.value = NavigationEvent(true)
+        _navigation.value = SingleEvent(true)
     }
 
 }

@@ -9,11 +9,12 @@ import android.view.inputmethod.EditorInfo
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.textfield.TextInputLayout
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentLoginBinding
 import com.udacity.shoestore.utils.CustomTextWatcher
 import com.udacity.shoestore.utils.hideKeyboard
+import com.udacity.shoestore.utils.showErrorMessageInputLayout
+import com.udacity.shoestore.utils.validateErrorInputLayout
 
 class LoginFragment : Fragment() {
 
@@ -30,8 +31,7 @@ class LoginFragment : Fragment() {
 
         viewModel.validateEmail.observe(viewLifecycleOwner, { isValidEmail ->
             if (!isValidEmail) {
-                showErrorMessageInputLayout(
-                    binding.emailTextInputLayout,
+                binding.emailTextInputLayout.showErrorMessageInputLayout(
                     getString(R.string.error_email)
                 )
             }
@@ -39,8 +39,7 @@ class LoginFragment : Fragment() {
 
         viewModel.validatePwd.observe(viewLifecycleOwner, { isValidPwd ->
             if (!isValidPwd) {
-                showErrorMessageInputLayout(
-                    binding.pwdTextInputLayout,
+                binding.pwdTextInputLayout.showErrorMessageInputLayout(
                     getString(R.string.error_pwd)
                 )
             }
@@ -52,14 +51,7 @@ class LoginFragment : Fragment() {
                     navigate()
                 }
             }
-
         })
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         binding.loginButton.setOnClickListener {
             viewModel.validateData(
@@ -78,13 +70,13 @@ class LoginFragment : Fragment() {
 
         binding.emailEdit.addTextChangedListener(CustomTextWatcher(
             onChanged = { _, _, _, _ ->
-                validateErrorInputLayout(binding.emailTextInputLayout)
+                binding.emailTextInputLayout.validateErrorInputLayout()
             }
         ))
 
         binding.pwdEdit.addTextChangedListener(CustomTextWatcher(
             onChanged = { _, _, _, _ ->
-                validateErrorInputLayout(binding.pwdTextInputLayout)
+                binding.pwdTextInputLayout.validateErrorInputLayout()
             }
         ))
 
@@ -95,6 +87,7 @@ class LoginFragment : Fragment() {
             false
         }
 
+        return binding.root
     }
 
     private fun navigate() {
@@ -104,17 +97,6 @@ class LoginFragment : Fragment() {
                 binding.emailEdit.text.toString()
             )
         )
-    }
-
-    private fun validateErrorInputLayout(textInputLayout: TextInputLayout) {
-        if (textInputLayout.isErrorEnabled) {
-            textInputLayout.error = null
-        }
-    }
-
-    private fun showErrorMessageInputLayout(textInputLayout: TextInputLayout, message: String) {
-        textInputLayout.isErrorEnabled = true
-        textInputLayout.error = message
     }
 
 }
