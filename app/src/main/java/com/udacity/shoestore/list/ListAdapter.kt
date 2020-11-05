@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.ItemListBinding
-import com.udacity.shoestore.models.ShoeModel
+import com.udacity.shoestore.model.ShoeModel
 import com.udacity.shoestore.utils.diffUtil
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
