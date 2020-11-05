@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListBinding
+import com.udacity.shoestore.models.ShoeModel
 
 class ListFragment : Fragment() {
 
@@ -25,8 +26,23 @@ class ListFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        val listAdapter = ListAdapter()
+        listAdapter.data = loadData()
+        binding.adapter = listAdapter
+
 
         return binding.root
+    }
+
+    private fun loadData(): MutableList<ShoeModel> {
+        val list = mutableListOf<ShoeModel>()
+
+        for (i in 1..5) {
+            val shoe =
+                ShoeModel("Name $i", i.toDouble(), "Company $i", "Description $i", arrayListOf())
+            list.add(shoe)
+        }
+        return list
     }
 
 }
