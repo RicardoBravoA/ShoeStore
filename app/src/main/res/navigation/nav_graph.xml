@@ -57,5 +57,19 @@
         android:id="@+id/ListFragment"
         android:name="com.udacity.shoestore.list.ListFragment"
         android:label="@string/list_fragment_label"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list">
+        <action
+            android:id="@+id/action_ListFragment_to_DetailFragment"
+            app:destination="@id/DetailFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/DetailFragment"
+        android:name="com.udacity.shoestore.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" />
 </navigation>
