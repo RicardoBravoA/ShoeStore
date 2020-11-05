@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListBinding
 import com.udacity.shoestore.models.ShoeModel
+import com.udacity.shoestore.welcome.WelcomeFragmentDirections
 
 class ListFragment : Fragment() {
 
@@ -27,7 +29,12 @@ class ListFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val listAdapter = ListAdapter()
-        listAdapter.data = loadData()
+        viewModel.addShoeList(loadData())
+
+        viewModel.shoeList.observe(viewLifecycleOwner, { data ->
+            listAdapter.data = data
+        })
+
         binding.adapter = listAdapter
 
 
