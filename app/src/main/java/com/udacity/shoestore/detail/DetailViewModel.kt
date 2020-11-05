@@ -29,7 +29,6 @@ class DetailViewModel : ViewModel() {
     val shoe: LiveData<SingleEvent<ShoeModel>>
         get() = _shoe
 
-
     fun validateData(name: String, description: String, company: String, size: String?) {
         _validateName.value = !TextUtils.isEmpty(name)
         _validateDescription.value = !TextUtils.isEmpty(description)
