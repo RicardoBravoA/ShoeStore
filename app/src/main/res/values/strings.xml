@@ -37,7 +37,7 @@
     <string name="error_name">Enter name</string>
     <string name="error_description">Enter description</string>
     <string name="error_company">Enter company</string>
-    <string name="error_size">Enter size</string>
+    <string name="error_size">Select size</string>
     <string name="save">Save</string>
     <string name="image">Image</string>
 

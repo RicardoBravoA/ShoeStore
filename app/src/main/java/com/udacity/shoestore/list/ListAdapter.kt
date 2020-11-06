@@ -11,8 +11,8 @@ import com.udacity.shoestore.utils.diffUtil
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
-    var data: List<ShoeModel> by diffUtil(
-        emptyList(),
+    var data: MutableList<ShoeModel> by diffUtil(
+        mutableListOf(),
         areItemsTheSame = { old, new -> old.name == new.name }
     )
 
@@ -32,6 +32,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     }
 
     override fun getItemCount(): Int = data.size
+
+    fun addItem(shoe: ShoeModel, position: Int) {
+        data.add(position, shoe)
+        notifyItemInserted(position)
+    }
 
     inner class ListViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {

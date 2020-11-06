@@ -21,9 +21,17 @@ class LoginViewModel : ViewModel() {
         get() = _validatePwd
 
     fun validateData(email: String, pwd: String) {
-        _validateEmail.value = InputUtils.isValidEmail(email)
-        _validatePwd.value = InputUtils.isValidPwd(pwd)
+        validateEmail(email)
+        validatePwd(pwd)
         _validateData.value = SingleEvent(_validateEmail.value!! && _validatePwd.value!!)
+    }
+
+    fun validateEmail(value: String) {
+        _validateEmail.value = InputUtils.isValidEmail(value)
+    }
+
+    fun validatePwd(value: String) {
+        _validatePwd.value = InputUtils.isValidPwd(value)
     }
 
 }
