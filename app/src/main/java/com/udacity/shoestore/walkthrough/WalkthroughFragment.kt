@@ -7,13 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
-import com.udacity.shoestore.databinding.FragmentWelcomeBinding
-import com.udacity.shoestore.walkthrough.welcome.WelcomeFragmentArgs
-import com.udacity.shoestore.walkthrough.welcome.WelcomeFragmentDirections
-import com.udacity.shoestore.walkthrough.welcome.WelcomeViewModel
+import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
 
 class WalkthroughFragment : Fragment() {
 
@@ -25,29 +21,29 @@ class WalkthroughFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding: FragmentWelcomeBinding = DataBindingUtil.inflate(
+        val binding: FragmentWalkthroughBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_walkthrough,
             container,
             false
         )
 
-        val welcomeFragmentArgs by navArgs<WelcomeFragmentArgs>()
+        val walkthroughFragmentArgs by navArgs<WalkthroughFragmentArgs>()
 
-        viewModelFactory = WalkthroughViewModelFactory(welcomeFragmentArgs.email)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(WelcomeViewModel::class.java)
+        viewModelFactory = WalkthroughViewModelFactory(walkthroughFragmentArgs.email)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(WalkthroughViewModel::class.java)
 
-        binding.welcomeViewModel = viewModel
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
-            navigation.getContentIfNotHandled()?.let {
+            /*navigation.getContentIfNotHandled()?.let {
                 if (it) {
                     findNavController().navigate(
                         WelcomeFragmentDirections.actionWelcomeFragmentToInstructionFragment()
                     )
                 }
-            }
+            }*/
         })
 
         return binding.root

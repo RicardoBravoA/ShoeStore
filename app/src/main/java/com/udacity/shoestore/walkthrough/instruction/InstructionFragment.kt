@@ -26,7 +26,7 @@ class InstructionFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
+        /*viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
             navigation.getContentIfNotHandled()?.let {
                 if (it) {
                     findNavController().navigate(
@@ -34,7 +34,7 @@ class InstructionFragment : Fragment() {
                     )
                 }
             }
-        })
+        })*/
 
         return binding.root
     }

@@ -30,9 +30,7 @@ class WelcomeFragment : Fragment() {
             false
         )
 
-        val welcomeFragmentArgs by navArgs<WelcomeFragmentArgs>()
-
-        viewModelFactory = WalkthroughViewModelFactory(welcomeFragmentArgs.email)
+        /*viewModelFactory = WalkthroughViewModelFactory(welcomeFragmentArgs.email)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WelcomeViewModel::class.java)
 
         binding.welcomeViewModel = viewModel
@@ -46,7 +44,7 @@ class WelcomeFragment : Fragment() {
                     )
                 }
             }
-        })
+        })*/
 
         return binding.root
     }

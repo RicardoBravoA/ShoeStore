@@ -95,7 +95,7 @@ class LoginFragment : Fragment() {
     private fun navigate() {
         hideKeyboard()
         findNavController().navigate(
-            LoginFragmentDirections.actionLoginFragmentToWelcomeFragment(
+            LoginFragmentDirections.actionLoginFragmentToWalkthroughFragment(
                 binding.emailEdit.text.toString()
             )
         )
