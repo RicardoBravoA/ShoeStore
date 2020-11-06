@@ -3,7 +3,7 @@ package com.udacity.shoestore.utils
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.
  */
-open class NavigationEvent<out T>(private val content: T) {
+open class SingleEvent<out T>(private val content: T) {
 
     var hasBeenHandled = false
         private set // Allow external read but not write

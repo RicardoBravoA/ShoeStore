@@ -3,8 +3,8 @@ package com.udacity.shoestore.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.models.ShoeModel
-import com.udacity.shoestore.utils.NavigationEvent
+import com.udacity.shoestore.model.shoe.ShoeModel
+import com.udacity.shoestore.utils.SingleEvent
 
 class ListViewModel : ViewModel() {
 
@@ -13,8 +13,8 @@ class ListViewModel : ViewModel() {
         get() = _shoeList
     private val data = mutableListOf<ShoeModel>()
 
-    private val _navigation = MutableLiveData<NavigationEvent<Boolean>>()
-    val navigation: LiveData<NavigationEvent<Boolean>>
+    private val _navigation = MutableLiveData<SingleEvent<Boolean>>()
+    val navigation: LiveData<SingleEvent<Boolean>>
         get() = _navigation
 
     fun addShoe(shoe: ShoeModel) {
@@ -29,7 +29,7 @@ class ListViewModel : ViewModel() {
     }
 
     fun navigation() {
-        _navigation.value = NavigationEvent(true)
+        _navigation.value = SingleEvent(true)
     }
 
 }

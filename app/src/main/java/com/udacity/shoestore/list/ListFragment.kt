@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListBinding
-import com.udacity.shoestore.models.ShoeModel
-import com.udacity.shoestore.welcome.WelcomeFragmentDirections
+import com.udacity.shoestore.model.shoe.ShoeModel
 
 class ListFragment : Fragment() {
 
@@ -47,6 +46,8 @@ class ListFragment : Fragment() {
             }
         })
 
+        val shoe = arguments?.getParcelable<ShoeModel>("shoe")
+
         return binding.root
     }
 
@@ -55,7 +56,7 @@ class ListFragment : Fragment() {
 
         for (i in 1..5) {
             val shoe =
-                ShoeModel("Name $i", i.toDouble(), "Company $i", "Description $i", arrayListOf())
+                ShoeModel("Name $i", "Description $i", "Company $i", i.toDouble(), arrayListOf())
             list.add(shoe)
         }
         return list
