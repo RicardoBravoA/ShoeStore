@@ -117,7 +117,8 @@ class DetailFragment : Fragment() {
                 binding.nameEdit.text.toString(),
                 binding.descriptionEdit.text.toString(),
                 binding.companyEdit.text.toString(),
-                sizeSelected()
+                sizeSelected(),
+                viewModel.images()
             )
         }
 

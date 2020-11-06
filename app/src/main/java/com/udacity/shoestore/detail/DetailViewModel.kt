@@ -1,11 +1,11 @@
 package com.udacity.shoestore.detail
 
 import android.text.TextUtils
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.model.detail.AddImageModel
+import com.udacity.shoestore.model.detail.ImageModel
 import com.udacity.shoestore.model.shoe.ShoeModel
 import com.udacity.shoestore.utils.SingleEvent
 
@@ -46,8 +46,13 @@ class DetailViewModel : ViewModel() {
         _showChips.value = true
     }
 
-    fun validateData(name: String, description: String, company: String, size: String?) {
-        Log.i("z- validateData", "true")
+    fun validateData(
+        name: String,
+        description: String,
+        company: String,
+        size: String?,
+        images: List<ImageModel>?
+    ) {
         validateName(name)
         validateDescription(description)
         validateCompany(company)
@@ -58,7 +63,16 @@ class DetailViewModel : ViewModel() {
             && _validateCompany.value!!
             && _validateSize.value!!
         ) {
-            _shoe.value = SingleEvent(ShoeModel(name, description, company, size!!.toDouble()))
+            _shoe.value =
+                SingleEvent(
+                    ShoeModel(
+                        name,
+                        description,
+                        company,
+                        size!!.toDouble(),
+                        images ?: arrayListOf()
+                    )
+                )
         }
     }
 
@@ -83,8 +97,12 @@ class DetailViewModel : ViewModel() {
         _validateCompany.value = !TextUtils.isEmpty(value)
     }
 
-    fun validateSize(value: String?) {
+    private fun validateSize(value: String?) {
         _validateSize.value = value != null && !TextUtils.isEmpty(value)
+    }
+
+    fun images(): List<ImageModel>? {
+        return _imageList.value?.filterIsInstance<ImageModel>()
     }
 
 }

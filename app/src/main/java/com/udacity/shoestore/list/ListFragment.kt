@@ -1,11 +1,11 @@
 package com.udacity.shoestore.list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
@@ -28,11 +28,6 @@ class ListFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val listAdapter = ListAdapter()
-        viewModel.addShoeList(loadData())
-
-        viewModel.shoeList.observe(viewLifecycleOwner, { data ->
-            listAdapter.data = data
-        })
 
         binding.adapter = listAdapter
 
@@ -46,20 +41,21 @@ class ListFragment : Fragment() {
             }
         })
 
-        val shoe = arguments?.getParcelable<ShoeModel>("shoe")
+        viewModel.shoe.observe(viewLifecycleOwner, { data ->
+            listAdapter.addItem(data.second, data.first)
+        })
+
+        val shoe = arguments?.getParcelable<ShoeModel>(KEY)
+
+        shoe?.let {
+            viewModel.addShoe(it)
+        }
 
         return binding.root
     }
 
-    private fun loadData(): MutableList<ShoeModel> {
-        val list = mutableListOf<ShoeModel>()
-
-        for (i in 1..5) {
-            val shoe =
-                ShoeModel("Name $i", "Description $i", "Company $i", i.toDouble(), arrayListOf())
-            list.add(shoe)
-        }
-        return list
+    companion object {
+        private const val KEY = "shoe"
     }
 
 }
