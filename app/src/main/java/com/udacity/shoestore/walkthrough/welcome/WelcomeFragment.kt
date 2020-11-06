@@ -11,11 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
+import com.udacity.shoestore.walkthrough.WalkthroughViewModelFactory
 
 class WelcomeFragment : Fragment() {
 
     private lateinit var viewModel: WelcomeViewModel
-    private lateinit var viewModelFactory: WelcomeViewModelFactory
+    private lateinit var viewModelFactory: WalkthroughViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +32,7 @@ class WelcomeFragment : Fragment() {
 
         val welcomeFragmentArgs by navArgs<WelcomeFragmentArgs>()
 
-        viewModelFactory = WelcomeViewModelFactory(welcomeFragmentArgs.email)
+        viewModelFactory = WalkthroughViewModelFactory(welcomeFragmentArgs.email)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WelcomeViewModel::class.java)
 
         binding.welcomeViewModel = viewModel
@@ -50,7 +51,4 @@ class WelcomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 }
