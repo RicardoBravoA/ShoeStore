@@ -14,13 +14,29 @@ class RecyclerViewDecoration(private val space: Float) : ItemDecoration() {
         state: RecyclerView.State
     ) {
         parent.adapter?.let {
-            for (index in 0 until parent.adapter!!.itemCount) {
-                when (index) {
-                    0 -> outRect.left = 0
-                    parent.adapter!!.itemCount - 1 -> outRect.right = 0
-                    else -> {
-                        outRect.left = space.toInt() / 2
-                        outRect.right = space.toInt() / 2
+
+            when {
+                it.itemCount <= 1 -> {
+                    //Without margins
+                }
+                it.itemCount == 2 -> {
+                    for (index in 0 until it.itemCount) {
+                        when (index) {
+                            0 -> outRect.right = space.toInt() / 2
+                            1 -> outRect.left = space.toInt() / 2
+                        }
+                    }
+                }
+                else -> {
+                    for (index in 0 until it.itemCount) {
+                        when (index) {
+                            0 -> outRect.left = 0
+                            parent.adapter!!.itemCount - 1 -> outRect.right = 0
+                            else -> {
+                                outRect.left = space.toInt() / 2
+                                outRect.right = space.toInt() / 2
+                            }
+                        }
                     }
                 }
             }
