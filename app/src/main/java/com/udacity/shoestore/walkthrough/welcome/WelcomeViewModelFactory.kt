@@ -1,4 +1,4 @@
-package com.udacity.shoestore.welcome
+package com.udacity.shoestore.walkthrough.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

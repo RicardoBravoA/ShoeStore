@@ -1,4 +1,4 @@
-package com.udacity.shoestore.instruction
+package com.udacity.shoestore.walkthrough.instruction
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
