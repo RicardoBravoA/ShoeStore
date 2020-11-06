@@ -1,5 +1,6 @@
 package com.udacity.shoestore.detail
 
+import android.content.ContentResolver
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,8 +10,13 @@ import com.udacity.shoestore.databinding.ItemDetailImageAddBinding
 import com.udacity.shoestore.databinding.ItemDetailImageBinding
 import com.udacity.shoestore.model.detail.AddImageModel
 import com.udacity.shoestore.model.detail.ImageModel
+import com.udacity.shoestore.utils.ImageUtils
 
-class DetailImageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DetailImageAdapter(
+    private val addImageClick: () -> Unit,
+    private val contentResolver: ContentResolver
+) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var data = listOf<Any>()
 
@@ -61,6 +67,12 @@ class DetailImageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     inner class AddViewHolder(binding: ItemDetailImageAddBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.addImageView.setOnClickListener {
+                addImageClick()
+            }
+        }
+
         fun bind() {
             //Do nothing
         }
@@ -71,6 +83,9 @@ class DetailImageAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(imageModel: ImageModel) {
             //Do nothing
+            ImageUtils.loadImageFromUri(contentResolver, imageModel.image)?.let {
+                binding.imageView.setImageBitmap(it)
+            }
         }
     }
 

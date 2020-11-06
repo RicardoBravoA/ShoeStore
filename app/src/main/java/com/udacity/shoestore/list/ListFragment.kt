@@ -62,7 +62,7 @@ class ListFragment : Fragment() {
 
         for (i in 1..5) {
             val shoe =
-                ShoeModel("Name $i", i.toDouble(), "Company $i", "Description $i", arrayListOf())
+                ShoeModel("Name $i", "Description $i", "Company $i", i.toDouble(), arrayListOf())
             list.add(shoe)
         }
         return list

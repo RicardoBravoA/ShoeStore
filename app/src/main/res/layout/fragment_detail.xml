@@ -116,16 +116,27 @@
                 app:selectionRequired="true"
                 app:singleSelection="true" />
 
+            <TextView
+                android:id="@+id/image_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/form_margin"
+                android:text="@string/image"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/size_chip_group" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/image_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/form_margin"
                 app:adapter="@{adapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/size_chip_group" />
+                app:layout_constraintTop_toBottomOf="@+id/image_text" />
 
             <Button
                 android:id="@+id/save_button"

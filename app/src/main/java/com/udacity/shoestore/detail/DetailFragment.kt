@@ -1,6 +1,8 @@
 package com.udacity.shoestore.detail
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,18 +41,14 @@ class DetailFragment : Fragment() {
         addChips(inflater)
 
         binding.imageRecyclerView.addItemDecoration(RecyclerViewDecoration(resources.getDimension(R.dimen.layout_padding)))
-        val imageAdapter = DetailImageAdapter()
+        val imageAdapter = DetailImageAdapter(::addImageClick, requireActivity().contentResolver)
         binding.adapter = imageAdapter
         viewModel.addImage(AddImageModel())
-        viewModel.addImage(ImageModel(""))
-        viewModel.addImage(ImageModel(""))
-        viewModel.addImage(ImageModel(""))
-
-
 
         viewModel.imageList.observe(viewLifecycleOwner, { image ->
             image.getContentIfNotHandled()?.let {
                 imageAdapter.data = it
+                imageAdapter.notifyDataSetChanged()
             }
         })
 
@@ -138,6 +136,33 @@ class DetailFragment : Fragment() {
             }
         val alert = builder.create()
         alert.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE) {
+            Log.i("z- image", "onActivityResult")
+            val imageUri = data?.data
+            Log.i("z- image", imageUri.toString())
+            data?.data?.let {
+                viewModel.addImage(ImageModel(it))
+            }
+        }
+    }
+
+    private fun addImageClick() {
+        Log.i("z- click", "image")
+        openGallery()
+    }
+
+    private fun openGallery() {
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, IMAGE)
+    }
+
+    companion object {
+        const val IMAGE = 100
     }
 
 }

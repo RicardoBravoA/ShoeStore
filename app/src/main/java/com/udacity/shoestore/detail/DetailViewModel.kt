@@ -1,11 +1,10 @@
 package com.udacity.shoestore.detail
 
 import android.text.TextUtils
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.model.detail.AddImageModel
-import com.udacity.shoestore.model.detail.ImageModel
 import com.udacity.shoestore.model.shoe.ShoeModel
 import com.udacity.shoestore.utils.SingleEvent
 
@@ -48,12 +47,13 @@ class DetailViewModel : ViewModel() {
             && _validateCompany.value!!
             && _validateSize.value!!
         ) {
-            _shoe.value = SingleEvent(ShoeModel(name, size!!.toDouble(), company, description))
+            _shoe.value = SingleEvent(ShoeModel(name, description, company, size!!.toDouble()))
         }
     }
 
     fun addImage(image: Any) {
         list.add(image)
+        Log.i("z- images", list.toString())
         _imageList.value = SingleEvent(list)
     }
 
