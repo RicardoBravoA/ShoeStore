@@ -3,7 +3,7 @@ package com.udacity.shoestore.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.shoestore.model.ShoeModel
+import com.udacity.shoestore.model.shoe.ShoeModel
 import com.udacity.shoestore.utils.SingleEvent
 
 class ListViewModel : ViewModel() {
