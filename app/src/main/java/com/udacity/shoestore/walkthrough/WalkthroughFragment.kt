@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
@@ -46,13 +47,13 @@ class WalkthroughFragment : Fragment() {
         binding.walkthroughViewPager.adapter = pagerAdapter
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
-            /*navigation.getContentIfNotHandled()?.let {
+            navigation.getContentIfNotHandled()?.let {
                 if (it) {
                     findNavController().navigate(
-                        WelcomeFragmentDirections.actionWelcomeFragmentToInstructionFragment()
+                        WalkthroughFragmentDirections.actionWalkthroughFragmentToListFragment()
                     )
                 }
-            }*/
+            }
         })
 
         return binding.root

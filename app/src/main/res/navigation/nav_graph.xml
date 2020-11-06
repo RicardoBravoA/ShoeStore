@@ -26,10 +26,19 @@
     <fragment
         android:id="@+id/WalkthroughFragment"
         android:name="com.udacity.shoestore.walkthrough.WalkthroughFragment"
-        android:label="WalkthroughFragment">
+        android:label="@string/walkthrough_fragment_label"
+        tools:layout="@layout/fragment_walkthrough">
         <argument
             android:name="email"
             app:argType="string" />
+        <action
+            android:id="@+id/action_WalkthroughFragment_to_ListFragment"
+            app:destination="@id/ListFragment"
+            app:enterAnim="@anim/anim_right_in"
+            app:exitAnim="@anim/anim_left_out"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_left_in"
+            app:popExitAnim="@anim/anim_right_out" />
 
     </fragment>
 
