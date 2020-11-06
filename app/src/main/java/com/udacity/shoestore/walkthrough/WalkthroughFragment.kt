@@ -39,7 +39,7 @@ class WalkthroughFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val fragmentList = mutableListOf<Fragment>()
-        fragmentList.add(WelcomeFragment())
+        fragmentList.add(WelcomeFragment.newInstance(walkthroughFragmentArgs.email))
         fragmentList.add(InstructionFragment())
 
         val pagerAdapter =

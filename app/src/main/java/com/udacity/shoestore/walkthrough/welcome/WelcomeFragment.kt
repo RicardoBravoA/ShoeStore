@@ -9,12 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
-import com.udacity.shoestore.walkthrough.WalkthroughViewModelFactory
 
 class WelcomeFragment : Fragment() {
 
     private lateinit var viewModel: WelcomeViewModel
-    private lateinit var viewModelFactory: WalkthroughViewModelFactory
+    private lateinit var viewModelFactory: WelcomeViewModelFactory
     private var email: String? = null
 
     override fun onCreateView(
@@ -32,7 +31,7 @@ class WelcomeFragment : Fragment() {
             email = it.getString(KEY)
         }
 
-        viewModelFactory = WalkthroughViewModelFactory(email)
+        viewModelFactory = WelcomeViewModelFactory(email)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WelcomeViewModel::class.java)
 
         binding.welcomeViewModel = viewModel
@@ -43,6 +42,7 @@ class WelcomeFragment : Fragment() {
 
     companion object {
         const val KEY = "KEY"
+
         fun newInstance(email: String) =
             WelcomeFragment().apply {
                 arguments = Bundle().apply {
