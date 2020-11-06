@@ -18,25 +18,25 @@ import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentDetailBinding
 import com.udacity.shoestore.databinding.ItemChipSizeBinding
 import com.udacity.shoestore.model.detail.ImageModel
+import com.udacity.shoestore.utils.CustomTextWatcher
 import com.udacity.shoestore.utils.RecyclerViewDecoration
 import com.udacity.shoestore.utils.showErrorMessageInputLayout
+import com.udacity.shoestore.utils.validateErrorInputLayout
 
 class DetailFragment : Fragment() {
 
     private lateinit var viewModel: DetailViewModel
     private lateinit var binding: FragmentDetailBinding
+    private var alertDialog: AlertDialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
-        addChips(inflater)
 
         binding.imageRecyclerView.addItemDecoration(RecyclerViewDecoration(resources.getDimension(R.dimen.layout_padding)))
         val imageAdapter = DetailImageAdapter(::addImageClick, requireActivity().contentResolver)
@@ -71,6 +71,27 @@ class DetailFragment : Fragment() {
             }
         })
 
+        binding.nameEdit.addTextChangedListener(CustomTextWatcher(
+            onChanged = { value, _, _, _ ->
+                binding.nameTextInputLayout.validateErrorInputLayout()
+                viewModel.validateName(value.toString())
+            }
+        ))
+
+        binding.descriptionEdit.addTextChangedListener(CustomTextWatcher(
+            onChanged = { value, _, _, _ ->
+                binding.descriptionTextInputLayout.validateErrorInputLayout()
+                viewModel.validateDescription(value.toString())
+            }
+        ))
+
+        binding.companyEdit.addTextChangedListener(CustomTextWatcher(
+            onChanged = { value, _, _, _ ->
+                binding.companyTextInputLayout.validateErrorInputLayout()
+                viewModel.validateCompany(value.toString())
+            }
+        ))
+
         viewModel.validateSize.observe(viewLifecycleOwner, { isValid ->
             if (!isValid) {
                 showAlertSize()
@@ -82,6 +103,12 @@ class DetailFragment : Fragment() {
                 findNavController().navigate(
                     DetailFragmentDirections.actionDetailFragmentToListFragment(it)
                 )
+            }
+        })
+
+        viewModel.showChips.observe(viewLifecycleOwner, { show ->
+            if (show) {
+                showChips(inflater)
             }
         })
 
@@ -97,7 +124,7 @@ class DetailFragment : Fragment() {
         return binding.root
     }
 
-    private fun addChips(inflater: LayoutInflater) {
+    private fun showChips(inflater: LayoutInflater) {
         val chips = requireContext().resources.getStringArray(R.array.size)
         chips.forEach {
             val bindingChip: ItemChipSizeBinding =
@@ -122,14 +149,22 @@ class DetailFragment : Fragment() {
     }
 
     private fun showAlertSize() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder
-            .setMessage(getString(R.string.error_size))
-            .setPositiveButton(android.R.string.ok) { dialog, _ ->
-                dialog.dismiss()
+        if (alertDialog == null) {
+            val builder = AlertDialog.Builder(requireContext())
+            builder
+                .setMessage(getString(R.string.error_size))
+                .setPositiveButton(android.R.string.ok) { dialog, _ ->
+                    dialog.dismiss()
+                    viewModel.completeSizeErrorMessage()
+                }
+            alertDialog = builder.create()
+        }
+
+        alertDialog?.let {
+            if (!it.isShowing) {
+                it.show()
             }
-        val alert = builder.create()
-        alert.show()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -142,17 +177,14 @@ class DetailFragment : Fragment() {
     }
 
     private fun addImageClick() {
-        openGallery()
-    }
-
-    private fun openGallery() {
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
-        photoPickerIntent.type = "image/*"
+        photoPickerIntent.type = TYPE
         startActivityForResult(photoPickerIntent, IMAGE)
     }
 
     companion object {
         const val IMAGE = 100
+        const val TYPE = "image/*"
     }
 
 }

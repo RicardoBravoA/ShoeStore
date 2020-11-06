@@ -1,6 +1,7 @@
 package com.udacity.shoestore.detail
 
 import android.text.TextUtils
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,17 +35,23 @@ class DetailViewModel : ViewModel() {
     val imageList: LiveData<List<Any>>
         get() = _imageList
 
+    private val _showChips = MutableLiveData<Boolean>()
+    val showChips: LiveData<Boolean>
+        get() = _showChips
+
     private val list = mutableListOf<Any>()
 
     init {
         addImage(AddImageModel())
+        _showChips.value = true
     }
 
     fun validateData(name: String, description: String, company: String, size: String?) {
-        _validateName.value = !TextUtils.isEmpty(name)
-        _validateDescription.value = !TextUtils.isEmpty(description)
-        _validateCompany.value = !TextUtils.isEmpty(company)
-        _validateSize.value = size != null && !TextUtils.isEmpty(size)
+        Log.i("z- validateData", "true")
+        validateName(name)
+        validateDescription(description)
+        validateCompany(company)
+        validateSize(size)
 
         if (_validateName.value!!
             && _validateDescription.value!!
@@ -58,6 +65,26 @@ class DetailViewModel : ViewModel() {
     fun addImage(image: Any) {
         list.add(image)
         _imageList.value = list
+    }
+
+    fun completeSizeErrorMessage() {
+        _validateSize.value = true
+    }
+
+    fun validateName(value: String) {
+        _validateName.value = !TextUtils.isEmpty(value)
+    }
+
+    fun validateDescription(value: String) {
+        _validateDescription.value = !TextUtils.isEmpty(value)
+    }
+
+    fun validateCompany(value: String) {
+        _validateCompany.value = !TextUtils.isEmpty(value)
+    }
+
+    fun validateSize(value: String?) {
+        _validateSize.value = value != null && !TextUtils.isEmpty(value)
     }
 
 }
