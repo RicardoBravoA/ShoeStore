@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
+import com.udacity.shoestore.walkthrough.instruction.InstructionFragment
+import com.udacity.shoestore.walkthrough.welcome.WelcomeFragment
 
 class WalkthroughFragment : Fragment() {
 
@@ -35,6 +37,14 @@ class WalkthroughFragment : Fragment() {
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        val fragmentList = mutableListOf<Fragment>()
+        fragmentList.add(WelcomeFragment())
+        fragmentList.add(InstructionFragment())
+
+        val pagerAdapter =
+            WalkthroughAdapter(requireActivity().supportFragmentManager, fragmentList)
+        binding.walkthroughViewPager.adapter = pagerAdapter
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
             /*navigation.getContentIfNotHandled()?.let {
