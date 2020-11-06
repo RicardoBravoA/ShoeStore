@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.utils.SingleEvent
 
-class WalkthroughViewModel(user: String) : ViewModel() {
+class WalkthroughViewModel(user: String?) : ViewModel() {
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String>
