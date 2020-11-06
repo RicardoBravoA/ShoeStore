@@ -22,7 +22,6 @@ class WalkthroughFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val binding: FragmentWalkthroughBinding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_walkthrough,
