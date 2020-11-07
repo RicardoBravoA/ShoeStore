@@ -82,7 +82,6 @@ class DetailImageAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(imageModel: ImageModel) {
-            //Do nothing
             ImageUtils.loadImageFromUri(contentResolver, imageModel.image)?.let {
                 binding.imageView.setImageBitmap(it)
             }
