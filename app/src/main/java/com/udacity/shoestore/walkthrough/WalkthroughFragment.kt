@@ -41,13 +41,26 @@ class WalkthroughFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val fragmentList = mutableListOf<Fragment>()
-        fragmentList.add(WelcomeFragment.newInstance(walkthroughFragmentArgs.email))
-        fragmentList.add(InstructionFragment())
+        viewModel.showData.observe(viewLifecycleOwner, { showData ->
+            if (showData) {
+                val fragmentList = mutableListOf<Fragment>()
+                fragmentList.add(WelcomeFragment.newInstance(walkthroughFragmentArgs.email))
+                fragmentList.add(InstructionFragment())
 
-        val pagerAdapter =
-            WalkthroughAdapter(requireActivity().supportFragmentManager, fragmentList)
-        binding.walkthroughViewPager.adapter = pagerAdapter
+                val pagerAdapter =
+                    WalkthroughAdapter(requireActivity().supportFragmentManager, fragmentList)
+                binding.walkthroughViewPager.adapter = pagerAdapter
+
+                binding.indicatorView
+                    .setSliderColor(
+                        ContextCompat.getColor(requireContext(), R.color.indicator_color),
+                        ContextCompat.getColor(requireContext(), R.color.purple_500)
+                    )
+                    .setSlideMode(IndicatorSlideMode.WORM)
+                    .setIndicatorStyle(IndicatorStyle.CIRCLE)
+                    .setupWithViewPager(binding.walkthroughViewPager)
+            }
+        })
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
             navigation.getContentIfNotHandled()?.let {
@@ -58,14 +71,6 @@ class WalkthroughFragment : Fragment() {
                 }
             }
         })
-        binding.indicatorView
-            .setSliderColor(
-                ContextCompat.getColor(requireContext(), R.color.indicator_color),
-                ContextCompat.getColor(requireContext(), R.color.purple_500)
-            )
-            .setSlideMode(IndicatorSlideMode.WORM)
-            .setIndicatorStyle(IndicatorStyle.CIRCLE)
-            .setupWithViewPager(binding.walkthroughViewPager)
 
         return binding.root
     }
