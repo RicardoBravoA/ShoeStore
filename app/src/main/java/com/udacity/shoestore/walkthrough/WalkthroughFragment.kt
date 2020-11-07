@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,8 @@ import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
 import com.udacity.shoestore.walkthrough.instruction.InstructionFragment
 import com.udacity.shoestore.walkthrough.welcome.WelcomeFragment
+import com.zhpan.indicator.enums.IndicatorSlideMode
+import com.zhpan.indicator.enums.IndicatorStyle
 
 class WalkthroughFragment : Fragment() {
 
@@ -55,6 +58,14 @@ class WalkthroughFragment : Fragment() {
                 }
             }
         })
+        binding.indicatorView
+            .setSliderColor(
+                ContextCompat.getColor(requireContext(), R.color.indicator_color),
+                ContextCompat.getColor(requireContext(), R.color.purple_500)
+            )
+            .setSlideMode(IndicatorSlideMode.WORM)
+            .setIndicatorStyle(IndicatorStyle.CIRCLE)
+            .setupWithViewPager(binding.walkthroughViewPager)
 
         return binding.root
     }
