@@ -19,7 +19,7 @@
             android:id="@+id/indicator_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/indicator_color_50"
+            android:background="@drawable/shape_indicator"
             app:layout_constraintBottom_toTopOf="@+id/title_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
