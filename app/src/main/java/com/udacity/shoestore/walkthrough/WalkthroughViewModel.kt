@@ -15,8 +15,13 @@ class WalkthroughViewModel(user: String?) : ViewModel() {
     val navigation: LiveData<SingleEvent<Boolean>>
         get() = _navigation
 
+    private val _showData = MutableLiveData<Boolean>()
+    val showData: LiveData<Boolean>
+        get() = _showData
+
     init {
         _email.value = user
+        _showData.value = true
     }
 
     fun navigation() {
