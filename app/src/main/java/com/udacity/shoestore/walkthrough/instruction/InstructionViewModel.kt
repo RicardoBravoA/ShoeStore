@@ -1,4 +1,4 @@
-package com.udacity.shoestore.instruction
+package com.udacity.shoestore.walkthrough.instruction
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
