@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.udacity.shoestore.instruction.InstructionViewModel" />
+            type="com.udacity.shoestore.walkthrough.instruction.InstructionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/layout_padding"
-        tools:context=".instruction.InstructionFragment">
+        tools:context=".walkthrough.instruction.InstructionFragment">
 
         <TextView
             android:id="@+id/hello_text"
@@ -24,15 +24,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/next_button"
-            style="@style/NavigationButton"
-            android:layout_width="@dimen/floating_size"
-            android:layout_height="@dimen/floating_size"
-            android:onClick="@{() -> viewModel.navigation()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

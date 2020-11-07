@@ -1,4 +1,4 @@
-package com.udacity.shoestore.instruction
+package com.udacity.shoestore.walkthrough.instruction
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentInstructionBinding
 
@@ -25,16 +24,6 @@ class InstructionFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(InstructionViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-        viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
-            navigation.getContentIfNotHandled()?.let {
-                if (it) {
-                    findNavController().navigate(
-                        InstructionFragmentDirections.actionInstructionFragmentToListFragment()
-                    )
-                }
-            }
-        })
 
         return binding.root
     }

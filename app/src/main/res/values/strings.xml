@@ -13,6 +13,10 @@
     <string name="new_user">New user? <b>SIGN UP</b></string>
     <!-- /Login -->
 
+    <!-- Walkthrough -->
+    <string name="walkthrough_fragment_label">Walkthrough Fragment</string>
+    <!-- /Walkthrough -->
+
     <!-- Welcome -->
     <string name="welcome_fragment_label">Welcome Fragment</string>
     <string name="welcome">Welcome!</string>
