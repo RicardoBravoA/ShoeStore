@@ -29,6 +29,8 @@
 
     <!-- List -->
     <string name="list_fragment_label">List Fragment</string>
+    <string name="list_size_label">Size: %1$s</string>
+    <string name="list_company_label">Company: %1$s</string>
     <!-- /List -->
 
     <!-- List -->
