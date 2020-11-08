@@ -1,7 +1,9 @@
 package com.udacity.shoestore.list
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -29,7 +31,7 @@ class ListAdapter(private val fragmentManager: FragmentManager) :
             parent,
             false
         )
-        return ListViewHolder(binding)
+        return ListViewHolder(binding, parent.context)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
@@ -44,27 +46,35 @@ class ListAdapter(private val fragmentManager: FragmentManager) :
         notifyItemInserted(position)
     }
 
-    inner class ListViewHolder(private val binding: ItemListBinding) :
+    inner class ListViewHolder(private val binding: ItemListBinding, private val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(shoe: ShoeModel) {
             binding.titleText.text = shoe.name
-            binding.companyText.text = shoe.company
-            binding.sizeText.text = shoe.size.toString()
+            binding.companyText.text = context.getString(R.string.list_company_label, shoe.company)
+            binding.sizeText.text =
+                context.getString(R.string.list_size_label, shoe.size.toString())
 
             val fragmentList = arrayListOf<Fragment>()
             val images = shoe.images
             if (images.isEmpty()) {
-                binding.indicatorView.visibility = View.GONE
                 val fragment = ImageFragment.newInstance(null)
                 fragmentList.add(fragment)
             } else {
-                binding.indicatorView.visibility = View.VISIBLE
+                binding.indicatorView.visibility = VISIBLE
                 images.forEach {
                     val fragment = ImageFragment.newInstance(it)
                     fragmentList.add(fragment)
                 }
+
             }
+
+            if (images.size > 1) {
+                binding.indicatorView.visibility = VISIBLE
+            } else {
+                binding.indicatorView.visibility = GONE
+            }
+
             val pagerAdapter =
                 ViewPagerAdapter(fragmentManager, fragmentList)
             binding.imageViewPager.adapter = pagerAdapter
