@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
+import com.udacity.shoestore.common.ViewPagerAdapter
+import com.udacity.shoestore.utils.init
 import com.udacity.shoestore.walkthrough.instruction.InstructionFragment
 import com.udacity.shoestore.walkthrough.welcome.WelcomeFragment
 import com.zhpan.indicator.enums.IndicatorSlideMode
@@ -48,17 +50,9 @@ class WalkthroughFragment : Fragment() {
                 fragmentList.add(InstructionFragment())
 
                 val pagerAdapter =
-                    WalkthroughAdapter(requireActivity().supportFragmentManager, fragmentList)
+                    ViewPagerAdapter(requireActivity().supportFragmentManager, fragmentList)
                 binding.walkthroughViewPager.adapter = pagerAdapter
-
-                binding.indicatorView
-                    .setSliderColor(
-                        ContextCompat.getColor(requireContext(), R.color.indicator_color),
-                        ContextCompat.getColor(requireContext(), R.color.purple_500)
-                    )
-                    .setSlideMode(IndicatorSlideMode.WORM)
-                    .setIndicatorStyle(IndicatorStyle.CIRCLE)
-                    .setupWithViewPager(binding.walkthroughViewPager)
+                binding.indicatorView.init(binding.walkthroughViewPager)
             }
         })
 

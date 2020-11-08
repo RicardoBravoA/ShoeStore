@@ -27,7 +27,7 @@ class ListFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val listAdapter = ListAdapter()
+        val listAdapter = ListAdapter(requireActivity().supportFragmentManager)
 
         binding.adapter = listAdapter
 
