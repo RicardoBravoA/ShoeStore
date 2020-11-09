@@ -5,4 +5,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ImageModel(var image: Uri) : Parcelable
+data class ImageModel(var image: Uri?) : Parcelable

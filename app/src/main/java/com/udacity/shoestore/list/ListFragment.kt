@@ -17,6 +17,7 @@ class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var binding: FragmentListBinding
+    private val listAdapter: ListAdapter by lazy { ListAdapter(requireActivity().contentResolver) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +28,6 @@ class ListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-        val listAdapter = ListAdapter(requireActivity().supportFragmentManager)
 
         binding.adapter = listAdapter
 
@@ -43,7 +42,9 @@ class ListFragment : Fragment() {
         })
 
         viewModel.shoe.observe(viewLifecycleOwner, {
-            listAdapter.addItem(it)
+            it.getContentIfNotHandled()?.let { shoe ->
+                listAdapter.addItem(shoe)
+            }
         })
 
         findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<ShoeModel>(Constant.KEY)

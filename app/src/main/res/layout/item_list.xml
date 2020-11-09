@@ -14,10 +14,12 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/layout_margin">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/image_view_pager"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shoe_recycler_view"
                 android:layout_width="@dimen/view_pager_size"
                 android:layout_height="@dimen/view_pager_size"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +41,7 @@
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_pager" />
+                app:layout_constraintTop_toBottomOf="@+id/shoe_recycler_view" />
 
             <TextView
                 android:id="@+id/size_text"
