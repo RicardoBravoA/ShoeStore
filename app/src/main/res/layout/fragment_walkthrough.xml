@@ -26,14 +26,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.zhpan.indicator.IndicatorView
+        <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
             android:id="@+id/indicator_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/next_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/walkthrough_view_pager" />
+            app:layout_constraintTop_toBottomOf="@+id/walkthrough_view_pager"
+            app:spi_dotColor="@color/indicator_color"
+            app:spi_dotSelectedColor="@color/purple_500" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/next_button"

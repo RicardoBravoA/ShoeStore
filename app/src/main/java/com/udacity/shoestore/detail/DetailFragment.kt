@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
@@ -18,10 +19,8 @@ import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentDetailBinding
 import com.udacity.shoestore.databinding.ItemChipSizeBinding
 import com.udacity.shoestore.model.detail.ImageModel
-import com.udacity.shoestore.utils.CustomTextWatcher
-import com.udacity.shoestore.utils.RecyclerViewDecoration
-import com.udacity.shoestore.utils.showErrorMessageInputLayout
-import com.udacity.shoestore.utils.validateErrorInputLayout
+import com.udacity.shoestore.model.shoe.ShoeModel
+import com.udacity.shoestore.utils.*
 
 class DetailFragment : Fragment() {
 
@@ -98,12 +97,8 @@ class DetailFragment : Fragment() {
             }
         })
 
-        viewModel.shoe.observe(viewLifecycleOwner, { shoe ->
-            shoe.getContentIfNotHandled()?.let {
-                findNavController().navigate(
-                    DetailFragmentDirections.actionDetailFragmentToListFragment(it)
-                )
-            }
+        viewModel.shoe.observe(viewLifecycleOwner, {
+            navigation(it)
         })
 
         viewModel.showChips.observe(viewLifecycleOwner, { show ->
@@ -120,9 +115,26 @@ class DetailFragment : Fragment() {
                 sizeSelected(),
                 viewModel.images()
             )
+
         }
 
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    navigation(ShoeModel("", "", "", 0.0, mutableListOf()))
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+
         return binding.root
+    }
+
+    private fun navigation(shoe: ShoeModel) {
+        findNavController().previousBackStackEntry?.savedStateHandle?.set(
+            Constant.KEY,
+            shoe
+        )
+        findNavController().popBackStack()
     }
 
     private fun showChips(inflater: LayoutInflater) {

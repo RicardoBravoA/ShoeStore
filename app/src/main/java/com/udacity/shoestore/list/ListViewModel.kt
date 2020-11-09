@@ -8,9 +8,9 @@ import com.udacity.shoestore.utils.SingleEvent
 
 class ListViewModel : ViewModel() {
 
-    private val _shoe = MutableLiveData<Pair<Int, ShoeModel>>()
-    val shoe: LiveData<Pair<Int, ShoeModel>>
-        get() = _shoe
+    private val _shoeList = MutableLiveData<SingleEvent<MutableList<ShoeModel>>>()
+    val shoeList: LiveData<SingleEvent<MutableList<ShoeModel>>>
+        get() = _shoeList
 
     private val data = mutableListOf<ShoeModel>()
 
@@ -19,8 +19,8 @@ class ListViewModel : ViewModel() {
         get() = _navigation
 
     fun addShoe(shoe: ShoeModel) {
-        _shoe.value = Pair(data.size, shoe)
         data.add(shoe)
+        _shoeList.value = SingleEvent(data)
     }
 
     fun navigation() {

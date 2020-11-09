@@ -11,11 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListBinding
 import com.udacity.shoestore.model.shoe.ShoeModel
+import com.udacity.shoestore.utils.Constant
 
 class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var binding: FragmentListBinding
+    private val listAdapter: ListAdapter by lazy { ListAdapter(requireActivity().contentResolver) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +28,6 @@ class ListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
-        val listAdapter = ListAdapter(requireActivity().supportFragmentManager)
 
         binding.adapter = listAdapter
 
@@ -41,21 +41,20 @@ class ListFragment : Fragment() {
             }
         })
 
-        viewModel.shoe.observe(viewLifecycleOwner, { data ->
-            listAdapter.addItem(data.second, data.first)
+        viewModel.shoeList.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { shoeList ->
+                listAdapter.data = shoeList
+            }
         })
 
-        val shoe = arguments?.getParcelable<ShoeModel>(KEY)
-
-        shoe?.let {
-            viewModel.addShoe(it)
-        }
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<ShoeModel>(Constant.KEY)
+            ?.observe(viewLifecycleOwner) {
+                if (it.name.isNotEmpty()) {
+                    viewModel.addShoe(it)
+                }
+            }
 
         return binding.root
-    }
-
-    companion object {
-        private const val KEY = "shoe"
     }
 
 }
