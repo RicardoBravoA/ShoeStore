@@ -121,7 +121,7 @@ class DetailFragment : Fragment() {
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    navigation(ShoeModel("", "", "", 0.0))
+                    navigation(ShoeModel("", "", "", 0.0, mutableListOf()))
                 }
             }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)

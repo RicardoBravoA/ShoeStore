@@ -50,7 +50,7 @@ class DetailViewModel : ViewModel() {
         description: String,
         company: String,
         size: String?,
-        images: List<ImageModel>?
+        images: List<ImageModel>
     ) {
         validateName(name)
         validateDescription(description)
@@ -68,7 +68,7 @@ class DetailViewModel : ViewModel() {
                     description,
                     company,
                     size!!.toDouble(),
-                    images ?: arrayListOf()
+                    images
                 )
         }
     }
@@ -98,8 +98,16 @@ class DetailViewModel : ViewModel() {
         _validateSize.value = value != null && !TextUtils.isEmpty(value)
     }
 
-    fun images(): List<ImageModel>? {
-        return _imageList.value?.filterIsInstance<ImageModel>()
+    fun images(): List<ImageModel> {
+        val imageDefaultList = mutableListOf<ImageModel>()
+        val images = _imageList.value?.filterIsInstance<ImageModel>()
+
+        return if (images.isNullOrEmpty()) {
+            imageDefaultList.add(ImageModel(null))
+            imageDefaultList
+        } else {
+            images
+        }
     }
 
 }
