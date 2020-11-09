@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,16 +12,12 @@ import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
 import com.udacity.shoestore.common.ViewPagerAdapter
-import com.udacity.shoestore.utils.init
 import com.udacity.shoestore.walkthrough.instruction.InstructionFragment
 import com.udacity.shoestore.walkthrough.welcome.WelcomeFragment
-import com.zhpan.indicator.enums.IndicatorSlideMode
-import com.zhpan.indicator.enums.IndicatorStyle
 
 class WalkthroughFragment : Fragment() {
 
     private lateinit var viewModel: WalkthroughViewModel
-    private lateinit var viewModelFactory: WalkthroughViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +32,7 @@ class WalkthroughFragment : Fragment() {
 
         val walkthroughFragmentArgs by navArgs<WalkthroughFragmentArgs>()
 
-        viewModelFactory = WalkthroughViewModelFactory(walkthroughFragmentArgs.email)
+        val viewModelFactory = WalkthroughViewModelFactory(walkthroughFragmentArgs.email)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WalkthroughViewModel::class.java)
 
         binding.viewModel = viewModel
@@ -52,7 +47,7 @@ class WalkthroughFragment : Fragment() {
                 val pagerAdapter =
                     ViewPagerAdapter(requireActivity().supportFragmentManager, fragmentList)
                 binding.walkthroughViewPager.adapter = pagerAdapter
-                binding.indicatorView.init(binding.walkthroughViewPager)
+                binding.indicatorView.attachToPager(binding.walkthroughViewPager)
             }
         })
 

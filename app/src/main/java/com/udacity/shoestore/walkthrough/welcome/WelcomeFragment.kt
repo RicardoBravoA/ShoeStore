@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWelcomeBinding
+import com.udacity.shoestore.utils.Constant
 
 class WelcomeFragment : Fragment() {
 
@@ -28,7 +29,7 @@ class WelcomeFragment : Fragment() {
         )
 
         arguments?.let {
-            email = it.getString(KEY)
+            email = it.getString(Constant.KEY)
         }
 
         viewModelFactory = WelcomeViewModelFactory(email)
@@ -41,12 +42,11 @@ class WelcomeFragment : Fragment() {
     }
 
     companion object {
-        const val KEY = "KEY"
 
         fun newInstance(email: String) =
             WelcomeFragment().apply {
                 arguments = Bundle().apply {
-                    putString(KEY, email)
+                    putString(Constant.KEY, email)
                 }
             }
     }

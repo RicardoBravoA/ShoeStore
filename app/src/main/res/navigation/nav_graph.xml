@@ -36,7 +36,6 @@
             app:destination="@id/ListFragment"
             app:enterAnim="@anim/anim_right_in"
             app:exitAnim="@anim/anim_left_out"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/anim_left_in"
             app:popExitAnim="@anim/anim_right_out"
             app:popUpTo="@id/WalkthroughFragment"
@@ -54,7 +53,6 @@
             app:destination="@id/DetailFragment"
             app:enterAnim="@anim/anim_right_in"
             app:exitAnim="@anim/anim_left_out"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/anim_left_in"
             app:popExitAnim="@anim/anim_right_out" />
     </fragment>
@@ -62,22 +60,6 @@
         android:id="@+id/DetailFragment"
         android:name="com.udacity.shoestore.detail.DetailFragment"
         android:label="@string/detail_fragment_label"
-        tools:layout="@layout/fragment_detail">
-
-        <action
-            android:id="@+id/action_DetailFragment_to_ListFragment"
-            app:destination="@id/ListFragment"
-            app:enterAnim="@anim/anim_right_in"
-            app:exitAnim="@anim/anim_left_out"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/anim_left_in"
-            app:popExitAnim="@anim/anim_right_out">
-
-            <argument
-                android:name="shoe"
-                app:argType="com.udacity.shoestore.model.shoe.ShoeModel" />
-        </action>
-
-    </fragment>
+        tools:layout="@layout/fragment_detail" />
 
 </navigation>
