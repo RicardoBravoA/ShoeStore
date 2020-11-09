@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentListBinding
 import com.udacity.shoestore.model.shoe.ShoeModel
+import com.udacity.shoestore.utils.Constant
 
 class ListFragment : Fragment() {
 
@@ -41,21 +42,18 @@ class ListFragment : Fragment() {
             }
         })
 
-        viewModel.shoe.observe(viewLifecycleOwner, { data ->
-            listAdapter.addItem(data.second, data.first)
+        viewModel.shoe.observe(viewLifecycleOwner, {
+            listAdapter.addItem(it)
         })
 
-        val shoe = arguments?.getParcelable<ShoeModel>(KEY)
-
-        shoe?.let {
-            viewModel.addShoe(it)
-        }
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<ShoeModel>(Constant.KEY)
+            ?.observe(viewLifecycleOwner) {
+                if (it.name.isNotEmpty()) {
+                    viewModel.addShoe(it)
+                }
+            }
 
         return binding.root
-    }
-
-    companion object {
-        private const val KEY = "shoe"
     }
 
 }

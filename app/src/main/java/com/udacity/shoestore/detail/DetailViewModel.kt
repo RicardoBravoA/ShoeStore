@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.udacity.shoestore.model.detail.AddImageModel
 import com.udacity.shoestore.model.detail.ImageModel
 import com.udacity.shoestore.model.shoe.ShoeModel
-import com.udacity.shoestore.utils.SingleEvent
 
 class DetailViewModel : ViewModel() {
 
@@ -27,8 +26,8 @@ class DetailViewModel : ViewModel() {
     val validateSize: LiveData<Boolean>
         get() = _validateSize
 
-    private val _shoe = MutableLiveData<SingleEvent<ShoeModel>>()
-    val shoe: LiveData<SingleEvent<ShoeModel>>
+    private val _shoe = MutableLiveData<ShoeModel>()
+    val shoe: LiveData<ShoeModel>
         get() = _shoe
 
     private val _imageList = MutableLiveData<List<Any>>()
@@ -64,14 +63,12 @@ class DetailViewModel : ViewModel() {
             && _validateSize.value!!
         ) {
             _shoe.value =
-                SingleEvent(
-                    ShoeModel(
-                        name,
-                        description,
-                        company,
-                        size!!.toDouble(),
-                        images ?: arrayListOf()
-                    )
+                ShoeModel(
+                    name,
+                    description,
+                    company,
+                    size!!.toDouble(),
+                    images ?: arrayListOf()
                 )
         }
     }

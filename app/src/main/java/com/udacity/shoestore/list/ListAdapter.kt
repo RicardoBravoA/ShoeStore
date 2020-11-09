@@ -41,7 +41,7 @@ class ListAdapter(private val fragmentManager: FragmentManager) :
 
     override fun getItemCount(): Int = data.size
 
-    fun addItem(shoe: ShoeModel, position: Int) {
+    fun addItem(shoe: ShoeModel, position: Int = itemCount) {
         data.add(position, shoe)
         notifyItemInserted(position)
     }
