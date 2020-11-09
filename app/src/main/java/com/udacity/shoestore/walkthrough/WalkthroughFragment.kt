@@ -12,7 +12,6 @@ import androidx.navigation.fragment.navArgs
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentWalkthroughBinding
 import com.udacity.shoestore.common.ViewPagerAdapter
-import com.udacity.shoestore.utils.init
 import com.udacity.shoestore.walkthrough.instruction.InstructionFragment
 import com.udacity.shoestore.walkthrough.welcome.WelcomeFragment
 
@@ -48,7 +47,7 @@ class WalkthroughFragment : Fragment() {
                 val pagerAdapter =
                     ViewPagerAdapter(requireActivity().supportFragmentManager, fragmentList)
                 binding.walkthroughViewPager.adapter = pagerAdapter
-                binding.indicatorView.init(binding.walkthroughViewPager)
+                binding.indicatorView.attachToPager(binding.walkthroughViewPager)
             }
         })
 

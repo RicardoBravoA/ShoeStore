@@ -24,14 +24,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.zhpan.indicator.IndicatorView
+            <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
                 android:id="@+id/indicator_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_indicator"
                 app:layout_constraintBottom_toTopOf="@+id/title_text"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:spi_dotColor="@color/indicator_color"
+                app:spi_dotSelectedColor="@color/purple_500" />
 
             <TextView
                 android:id="@+id/title_text"

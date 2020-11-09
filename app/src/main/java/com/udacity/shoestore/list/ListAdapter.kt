@@ -57,6 +57,7 @@ class ListAdapter(private val contentResolver: ContentResolver) :
 
             if (images.size > 1) {
                 binding.indicatorView.visibility = VISIBLE
+                binding.indicatorView.attachToRecyclerView(binding.shoeRecyclerView)
             } else {
                 binding.indicatorView.visibility = GONE
             }
