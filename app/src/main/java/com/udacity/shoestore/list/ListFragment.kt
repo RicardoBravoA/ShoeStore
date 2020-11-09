@@ -41,9 +41,9 @@ class ListFragment : Fragment() {
             }
         })
 
-        viewModel.shoe.observe(viewLifecycleOwner, {
-            it.getContentIfNotHandled()?.let { shoe ->
-                listAdapter.addItem(shoe)
+        viewModel.shoeList.observe(viewLifecycleOwner, {
+            it.getContentIfNotHandled()?.let { shoeList ->
+                listAdapter.data = shoeList
             }
         })
 
