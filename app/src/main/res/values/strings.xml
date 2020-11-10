@@ -26,6 +26,8 @@
 
     <!-- Instruction -->
     <string name="instruction_fragment_label">Instruction Fragment</string>
+    <string name="instruction_title_1_label">Add shoes, sneakers and more.</string>
+    <string name="instruction_title_2_label">Select photos and more&#8230;</string>
     <!-- /Instruction -->
 
     <!-- List -->
