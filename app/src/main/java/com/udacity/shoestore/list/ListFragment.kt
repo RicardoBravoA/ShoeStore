@@ -1,9 +1,7 @@
 package com.udacity.shoestore.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +27,7 @@ class ListFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        setHasOptionsMenu(true)
         binding.adapter = listAdapter
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
@@ -55,6 +54,23 @@ class ListFragment : Fragment() {
             }
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_logout, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.logout -> {
+                findNavController().navigate(
+                    ListFragmentDirections.actionListFragmentToLoginFragment()
+                )
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }
