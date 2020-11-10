@@ -11,7 +11,7 @@ Download the project from [Github](https://github.com/RicardoBravoA/ShoeStore), 
 This project uses the following dependencies
 
 - [ConstraintLayout](https://developer.android.com/training/constraint-layout)
-- [scrollingpagerindicator](https://developer.android.com/guide/navigation/navigation-getting-started)
+- [Navigation Components](https://developer.android.com/guide/navigation/navigation-getting-started)
 - [ScrollingPagerIndicator](https://github.com/TinkoffCreditSystems/ScrollingPagerIndicator)
 
 
