@@ -30,6 +30,7 @@ class LoginViewModel : ViewModel() {
         _validateEmail.value = InputUtils.isValidEmail(value)
     }
 
+    // For TextWatcher
     fun validateEmailWatcher() {
         _validateEmail.value = true
     }
@@ -38,6 +39,7 @@ class LoginViewModel : ViewModel() {
         _validatePwd.value = InputUtils.isValidPwd(value)
     }
 
+    // For TextWatcher
     fun validatePwdWatcher() {
         _validatePwd.value = true
     }
