@@ -82,16 +82,28 @@ class DetailViewModel : ViewModel() {
         _validateSize.value = true
     }
 
-    fun validateName(value: String) {
+    private fun validateName(value: String) {
         _validateName.value = !TextUtils.isEmpty(value)
     }
 
-    fun validateDescription(value: String) {
+    fun validateNameWatcher() {
+        _validateName.value = true
+    }
+
+    private fun validateDescription(value: String) {
         _validateDescription.value = !TextUtils.isEmpty(value)
     }
 
-    fun validateCompany(value: String) {
+    fun validateDescriptionWatcher() {
+        _validateDescription.value = true
+    }
+
+    private fun validateCompany(value: String) {
         _validateCompany.value = !TextUtils.isEmpty(value)
+    }
+
+    fun validateCompanyWatcher() {
+        _validateCompany.value = true
     }
 
     private fun validateSize(value: String?) {

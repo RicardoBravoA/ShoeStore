@@ -69,16 +69,16 @@ class LoginFragment : Fragment() {
         }
 
         binding.emailEdit.addTextChangedListener(CustomTextWatcher(
-            onChanged = { value, _, _, _ ->
+            onChanged = { _, _, _, _ ->
                 binding.emailTextInputLayout.validateErrorInputLayout()
-                viewModel.validateEmail(value.toString())
+                viewModel.validateEmailWatcher()
             }
         ))
 
         binding.pwdEdit.addTextChangedListener(CustomTextWatcher(
-            onChanged = { value, _, _, _ ->
+            onChanged = { _, _, _, _ ->
                 binding.pwdTextInputLayout.validateErrorInputLayout()
-                viewModel.validatePwd(value.toString())
+                viewModel.validatePwdWatcher()
             }
         ))
 
