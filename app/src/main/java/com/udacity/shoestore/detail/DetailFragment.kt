@@ -71,23 +71,23 @@ class DetailFragment : Fragment() {
         })
 
         binding.nameEdit.addTextChangedListener(CustomTextWatcher(
-            onChanged = { value, _, _, _ ->
+            onChanged = { _, _, _, _ ->
                 binding.nameTextInputLayout.validateErrorInputLayout()
-                viewModel.validateName(value.toString())
+                viewModel.validateNameWatcher()
             }
         ))
 
         binding.descriptionEdit.addTextChangedListener(CustomTextWatcher(
-            onChanged = { value, _, _, _ ->
+            onChanged = { _, _, _, _ ->
                 binding.descriptionTextInputLayout.validateErrorInputLayout()
-                viewModel.validateDescription(value.toString())
+                viewModel.validateDescriptionWatcher()
             }
         ))
 
         binding.companyEdit.addTextChangedListener(CustomTextWatcher(
-            onChanged = { value, _, _, _ ->
+            onChanged = { _, _, _, _ ->
                 binding.companyTextInputLayout.validateErrorInputLayout()
-                viewModel.validateCompany(value.toString())
+                viewModel.validateCompanyWatcher()
             }
         ))
 
