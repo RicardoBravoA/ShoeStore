@@ -28,12 +28,9 @@ release
 
 For now there are no tests.
 
-```
-Examples here
-```
 ## Project Instructions
 
-The project has the following functionalities.
+The project has this features.
 
 <p align="center">
   <img src="gif/shoe.gif" alt="gif" width="200" height="354"/><br>
