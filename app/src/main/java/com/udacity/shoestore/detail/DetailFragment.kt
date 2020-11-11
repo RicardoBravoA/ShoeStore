@@ -38,7 +38,8 @@ class DetailFragment : Fragment() {
 
         binding.imageRecyclerView.addItemDecoration(RecyclerViewDecoration(resources.getDimension(R.dimen.layout_padding)))
         val imageAdapter = DetailImageAdapter(::addImageClick, requireActivity().contentResolver)
-        binding.adapter = imageAdapter
+        binding.imageRecyclerView.adapter = imageAdapter
+        binding.imageRecyclerView.setHasFixedSize(true)
 
         viewModel.imageList.observe(viewLifecycleOwner, { list ->
             imageAdapter.data = list
