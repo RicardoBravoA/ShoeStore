@@ -24,7 +24,7 @@
             android:padding="@dimen/text_padding"
             android:text="@string/instruction_title_1_label"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="@dimen/instruction_title"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
             android:padding="@dimen/text_padding"
             android:text="@string/instruction_title_2_label"
             android:textAlignment="center"
-            android:textSize="24sp"
+            android:textSize="@dimen/instruction_sub_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_1_text_view" />

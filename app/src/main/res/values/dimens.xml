@@ -10,4 +10,7 @@
     <dimen name="stroke_size">1dp</dimen>
     <dimen name="walkthrough_title">32sp</dimen>
     <dimen name="walkthrough_sub_title">16sp</dimen>
+    <dimen name="dimens_18_sp">18sp</dimen>
+    <dimen name="instruction_title">30sp</dimen>
+    <dimen name="instruction_sub_title">24sp</dimen>
 </resources>
