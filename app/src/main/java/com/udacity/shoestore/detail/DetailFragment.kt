@@ -35,7 +35,6 @@ class DetailFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         setHasOptionsMenu(true)
 

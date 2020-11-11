@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+    <!-- I need the data and variable tags,
+    because I'm using the BindingAdapter for the recycler view -->
 
-        <variable
-            name="viewModel"
-            type="com.udacity.shoestore.detail.DetailViewModel" />
+    <data>
 
         <variable
             name="adapter"
