@@ -14,4 +14,8 @@ class SharedDetailListViewModel : ViewModel() {
     fun addShoe(shoe: ShoeModel) {
         _shoe.value = shoe
     }
+
+    fun clearShoe() {
+        _shoe.value = ShoeModel("", "", "", 0.0, mutableListOf())
+    }
 }
