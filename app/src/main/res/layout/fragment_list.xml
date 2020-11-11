@@ -9,9 +9,6 @@
             name="viewModel"
             type="com.udacity.shoestore.list.ListViewModel" />
 
-        <variable
-            name="adapter"
-            type="com.udacity.shoestore.list.ListAdapter" />
     </data>
 
     <!-- Here a relative layout or a frame layout would have had
@@ -22,17 +19,20 @@
         android:layout_height="match_parent"
         tools:context=".list.ListFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shoe_recycler"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:adapter="@{adapter}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:spanCount="3" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/shoe_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/next_button"

@@ -3,16 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- I need the data and variable tags,
-    because I'm using the BindingAdapter for the recycler view -->
-
-    <data>
-
-        <variable
-            name="adapter"
-            type="com.udacity.shoestore.detail.DetailImageAdapter" />
-    </data>
-
     <!-- In this case  would have been easier using a
         horizontal linear layout, but I prefer to use constraint layout -->
 
@@ -134,7 +124,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_margin"
                 android:orientation="horizontal"
-                app:adapter="@{adapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

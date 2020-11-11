@@ -10,12 +10,14 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.common.SharedDetailListViewModel
 import com.udacity.shoestore.databinding.FragmentListBinding
+import com.udacity.shoestore.databinding.ItemListBinding
+import com.udacity.shoestore.model.shoe.ShoeModel
 
 class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
     private lateinit var binding: FragmentListBinding
-    private val listAdapter: ListAdapter by lazy { ListAdapter(requireActivity().contentResolver) }
+
     private val sharedViewModel: SharedDetailListViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -29,7 +31,6 @@ class ListFragment : Fragment() {
         binding.lifecycleOwner = this
 
         setHasOptionsMenu(true)
-        binding.adapter = listAdapter
 
         viewModel.navigation.observe(viewLifecycleOwner, { navigation ->
             navigation.getContentIfNotHandled()?.let {
@@ -42,7 +43,7 @@ class ListFragment : Fragment() {
         })
 
         viewModel.shoeList.observe(viewLifecycleOwner, {
-            listAdapter.data = it
+            showItems(it, inflater)
         })
 
         sharedViewModel.shoe.observe(viewLifecycleOwner, {
@@ -53,6 +54,41 @@ class ListFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    private fun showItems(shoeList: MutableList<ShoeModel>, inflater: LayoutInflater) {
+        binding.shoeLinearLayout.removeAllViews()
+
+        shoeList.forEach {
+            val viewBinding: ItemListBinding =
+                DataBindingUtil.inflate(
+                    inflater, R.layout.item_list,
+                    binding.shoeLinearLayout,
+                    false
+                )
+            val imageAdapter: ImageAdapter by lazy { ImageAdapter(requireActivity().contentResolver) }
+
+            viewBinding.titleText.text = it.name
+            viewBinding.companyText.text = requireContext()
+                .getString(R.string.list_company_label, it.company)
+            viewBinding.sizeText.text =
+                requireContext().getString(R.string.list_size_label, it.size.toString())
+            viewBinding.descriptionText.text =
+                requireContext().getString(R.string.list_description_label, it.description)
+
+            val images = it.images
+
+            imageAdapter.data = images.toMutableList()
+            viewBinding.shoeRecyclerView.adapter = imageAdapter
+
+            if (images.size > 1) {
+                viewBinding.indicatorView.visibility = View.VISIBLE
+                viewBinding.indicatorView.attachToRecyclerView(viewBinding.shoeRecyclerView)
+            } else {
+                viewBinding.indicatorView.visibility = View.GONE
+            }
+            binding.shoeLinearLayout.addView(viewBinding.root)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
