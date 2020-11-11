@@ -10,10 +10,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.udacity.shoestore.R
+import com.udacity.shoestore.common.SharedDetailListViewModel
 import com.udacity.shoestore.databinding.FragmentDetailBinding
 import com.udacity.shoestore.databinding.ItemChipSizeBinding
 import com.udacity.shoestore.model.detail.ImageModel
@@ -25,6 +27,7 @@ class DetailFragment : Fragment() {
     private lateinit var viewModel: DetailViewModel
     private lateinit var binding: FragmentDetailBinding
     private var alertDialog: AlertDialog? = null
+    private val sharedViewModel: SharedDetailListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -130,10 +133,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun navigation(shoe: ShoeModel) {
-        findNavController().previousBackStackEntry?.savedStateHandle?.set(
-            Constant.KEY,
-            shoe
-        )
+        sharedViewModel.addShoe(shoe)
         findNavController().popBackStack()
     }
 
