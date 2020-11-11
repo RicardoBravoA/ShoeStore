@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+    <!-- I need the data and variable tags,
+    because I'm using the BindingAdapter for the recycler view -->
 
-        <variable
-            name="viewModel"
-            type="com.udacity.shoestore.detail.DetailViewModel" />
+    <data>
 
         <variable
             name="adapter"
             type="com.udacity.shoestore.detail.DetailImageAdapter" />
     </data>
+
+    <!-- In this case  would have been easier using a
+        horizontal linear layout, but I prefer to use constraint layout -->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -100,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_margin"
                 android:text="@string/detail_size"
-                android:textSize="18sp"
+                android:textSize="@dimen/dimens_18_sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/company_text_input_layout" />
 
@@ -122,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/form_margin"
                 android:text="@string/image"
-                android:textSize="18sp"
+                android:textSize="@dimen/dimens_18_sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/size_chip_group" />
 
@@ -130,8 +132,8 @@
                 android:id="@+id/image_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginTop="@dimen/form_margin"
+                android:orientation="horizontal"
                 app:adapter="@{adapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

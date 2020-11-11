@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
@@ -36,9 +35,6 @@ class DetailFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
-        setHasOptionsMenu(true)
 
         binding.imageRecyclerView.addItemDecoration(RecyclerViewDecoration(resources.getDimension(R.dimen.layout_padding)))
         val imageAdapter = DetailImageAdapter(::addImageClick, requireActivity().contentResolver)
@@ -121,14 +117,6 @@ class DetailFragment : Fragment() {
 
         }
 
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    navigation(ShoeModel("", "", "", 0.0, mutableListOf()))
-                }
-            }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-
         return binding.root
     }
 
@@ -193,23 +181,6 @@ class DetailFragment : Fragment() {
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = TYPE
         startActivityForResult(photoPickerIntent, IMAGE)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_logout, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.logout -> {
-                findNavController().navigate(
-                    DetailFragmentDirections.actionDetailFragmentToLoginFragment()
-                )
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     companion object {
