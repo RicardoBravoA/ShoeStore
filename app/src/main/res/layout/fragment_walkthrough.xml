@@ -10,6 +10,9 @@
             type="com.udacity.shoestore.walkthrough.WalkthroughViewModel" />
     </data>
 
+    <!-- Here a relative layout or a frame layout would have had
+    the same result -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
