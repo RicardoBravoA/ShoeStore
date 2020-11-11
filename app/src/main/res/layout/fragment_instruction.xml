@@ -10,6 +10,9 @@
             type="com.udacity.shoestore.walkthrough.instruction.InstructionViewModel" />
     </data>
 
+    <!-- Here I am testing guideline, then using a vertical
+    linear layout with center gravity would have been the same -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -50,6 +53,5 @@
             app:layout_constraintTop_toBottomOf="@+id/title_1_text_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </layout>
