@@ -36,8 +36,6 @@ class DetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         binding.lifecycleOwner = this
 
-        setHasOptionsMenu(true)
-
         binding.imageRecyclerView.addItemDecoration(RecyclerViewDecoration(resources.getDimension(R.dimen.layout_padding)))
         val imageAdapter = DetailImageAdapter(::addImageClick, requireActivity().contentResolver)
         binding.adapter = imageAdapter
@@ -183,23 +181,6 @@ class DetailFragment : Fragment() {
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = TYPE
         startActivityForResult(photoPickerIntent, IMAGE)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_logout, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.logout -> {
-                findNavController().navigate(
-                    DetailFragmentDirections.actionDetailFragmentToLoginFragment()
-                )
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 
     companion object {
