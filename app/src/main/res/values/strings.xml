@@ -34,9 +34,10 @@
     <string name="list_fragment_label">List Fragment</string>
     <string name="list_size_label">Size: %1$s</string>
     <string name="list_company_label">Company: %1$s</string>
+    <string name="list_description_label">Description: %1$s</string>
     <!-- /List -->
 
-    <!-- List -->
+    <!-- Detail -->
     <string name="detail_fragment_label">Detail Fragment</string>
     <string name="detail_name">Name</string>
     <string name="detail_description">Description</string>
@@ -63,6 +64,6 @@
         <item>9.5</item>
     </string-array>
 
-    <!-- /List -->
+    <!-- /Detail -->
 
 </resources>

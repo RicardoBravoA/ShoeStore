@@ -30,4 +30,11 @@
         <item name="tint">@color/white</item>
     </style>
 
+    <style name="ListItem">
+        <item name="android:paddingStart">@dimen/text_padding</item>
+        <item name="android:paddingEnd">@dimen/text_padding</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="tint">@color/white</item>
+    </style>
+
 </resources>
